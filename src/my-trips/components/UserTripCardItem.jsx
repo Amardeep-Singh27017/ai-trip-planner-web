@@ -15,7 +15,6 @@ const UserTripCardItem = ({ trip }) => {
             textQuery: trip?.userSelection?.location
         }
         const image = await searchPlaceImages(data.textQuery);
-        console.log("images are these: ", image);
         setImageURL(image)
     }
 

@@ -10,7 +10,7 @@ const Hotels = ({ trip }) => {
 
             <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-4'>
                 {trip?.tripData?.HotelOptions?.map((hotel, index) => (
-                   <HotelCardItem hotel={hotel} index={index} trip={trip} />
+                   <HotelCardItem key={index} hotel={hotel} index={index} trip={trip} />
                 ))}
             </div>
 

@@ -18,7 +18,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { useGoogleLogin } from '@react-oauth/google'
+// import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
 import { doc, setDoc } from 'firebase/firestore'
 import { db } from '@/service/firebaseConfig'
@@ -46,10 +46,10 @@ const CreateTrip = () => {
   useEffect(() => {
   }, [formdata]);
 
-  const login = useGoogleLogin({
-    onSuccess: (codeResp) => GetUserProfile(codeResp),
-    onError: (error) => console.log(error)
-  })
+  // const login = useGoogleLogin({
+  //   onSuccess: (codeResp) => GetUserProfile(codeResp),
+  //   onError: (error) => console.log(error)
+  // })
 
   const onGenerateTrip = async () => {
 
@@ -72,7 +72,6 @@ const CreateTrip = () => {
       .replace('{budget}', formdata?.budget)
     try {
       const result = await chatSession.sendMessage(FINAL_PROMPT);
-      console.log(result?.response?.text())
       setLoading(false);
       SaveAiTrip(result?.response?.text())
 
@@ -190,7 +189,7 @@ const CreateTrip = () => {
               <p>Sign in to the app with google authentication securely</p>
 
               <Button
-                onClick={login}
+                // onClick={login}
                 className="w-full mt-5 hover:cursor-pointer flex gap-2 items-center ">
                 <FcGoogle className='h-7 w-7' />
                 Sign In With Google

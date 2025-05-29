@@ -15,7 +15,6 @@ const PlaceCardItem = ({ place }) => {
             textQuery: place?.PlaceName
         }
         const image = await searchPlaceImages(data.textQuery);
-        console.log("images are these: ", image);
         setImageURL(image)
     }
 

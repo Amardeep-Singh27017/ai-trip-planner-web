@@ -14,7 +14,7 @@ const searchPlaceImages = async (query) => {
   });
 
   // Return an array of image URLs
-  return res.data.results.map(img => console.log(img.urls.regular));
+  return res.data.results.map(img => img.urls.regular);
 };
 
 export default searchPlaceImages;
