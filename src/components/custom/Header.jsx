@@ -71,7 +71,7 @@ const Header = () => {
             </Popover>
 
           </div>
-          : <Button className="cursor-pointer" onClick={() => setOpenDailog(true)}>Sign In</Button>
+          : <Button className="cursor-pointer" onClick={() => setOpenDailog(false)}>Sign In</Button>
         }
 
       </div>
