@@ -17,15 +17,15 @@ const router = createBrowserRouter([
     element: <App />
   },
   {
-    path: '/create-trip',
+    path: 'https://ai-trip-planner-web-virid.vercel.app/create-trip',
     element: <CreateTrip />
   },
   {
-    path: '/view-trip/:tripId',
+    path: 'https://ai-trip-planner-web-virid.vercel.app/view-trip/:tripId',
     element: <ViewTrip />
   },
   {
-    path: '/my-trips',
+    path: 'https://ai-trip-planner-web-virid.vercel.app/my-trips',
     element: <AllTrips />
   }
 ])

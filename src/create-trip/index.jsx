@@ -181,8 +181,8 @@ const CreateTrip = () => {
       </div>
 
       <Dialog open={openDailog}>
-        <DialogContent>
-          <DialogHeader onClick={() => setOpenDailog(false)}>
+        <DialogContent onClick={() => setOpenDailog(false)}>
+          <DialogHeader>
             <DialogDescription>
               <img width={150} src='/Logo.png' alt='logo...' />
               <h2 className='font-bold text-lg mt-2'>Sign In With Google</h2>

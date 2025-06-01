@@ -76,7 +76,7 @@ const Header = () => {
 
       </div>
       <Dialog open={openDailog}>
-        <DialogContent>
+        <DialogContent onClick={() => setOpenDailog(false)}>
           <DialogHeader>
             <DialogDescription>
               <img width={150} src='/Logo.png' alt='logo...' />
