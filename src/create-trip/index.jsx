@@ -54,10 +54,10 @@ const CreateTrip = () => {
   const onGenerateTrip = async () => {
 
     const user = localStorage.getItem('user');
-    if (!user) {
-      // setOpenDailog(true)
-      return;
-    }
+    // if (!user) {
+    //   setOpenDailog(true)
+    //   return;
+    // }
 
     if (!formdata?.location || !formdata?.day || !formdata?.budget || !formdata?.traveler) {
       toast("Please fill all details!")
