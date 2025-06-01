@@ -18,7 +18,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-// import { useGoogleLogin } from '@react-oauth/google'
+import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
 import { doc, setDoc } from 'firebase/firestore'
 import { db } from '@/service/firebaseConfig'
@@ -46,18 +46,18 @@ const CreateTrip = () => {
   useEffect(() => {
   }, [formdata]);
 
-  // const login = useGoogleLogin({
-  //   onSuccess: (codeResp) => GetUserProfile(codeResp),
-  //   onError: (error) => console.log(error)
-  // })
+  const login = useGoogleLogin({
+    onSuccess: (codeResp) => GetUserProfile(codeResp),
+    onError: (error) => console.log(error)
+  })
 
   const onGenerateTrip = async () => {
 
     const user = localStorage.getItem('user');
-    // if (!user) {
-    //   setOpenDailog(true)
-    //   return;
-    // }
+    if (!user) {
+      setOpenDailog(true)
+      return;
+    }
 
     if (!formdata?.location || !formdata?.day || !formdata?.budget || !formdata?.traveler) {
       toast("Please fill all details!")
@@ -182,14 +182,14 @@ const CreateTrip = () => {
 
       <Dialog open={openDailog}>
         <DialogContent>
-          <DialogHeader>
+          <DialogHeader onClick={() => setOpenDailog(false)}>
             <DialogDescription>
               <img width={150} src='/Logo.png' alt='logo...' />
               <h2 className='font-bold text-lg mt-2'>Sign In With Google</h2>
               <p>Sign in to the app with google authentication securely</p>
 
               <Button
-                // onClick={login}
+                onClick={login}
                 className="w-full mt-5 hover:cursor-pointer flex gap-2 items-center ">
                 <FcGoogle className='h-7 w-7' />
                 Sign In With Google
