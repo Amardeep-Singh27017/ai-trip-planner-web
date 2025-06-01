@@ -55,7 +55,7 @@ const CreateTrip = () => {
 
     const user = localStorage.getItem('user');
     if (!user) {
-      setOpenDailog(true)
+      // setOpenDailog(true)
       return;
     }
 
