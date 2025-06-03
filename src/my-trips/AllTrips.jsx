@@ -25,11 +25,13 @@ const AllTrips = () => {
         const q = query(collection(db, 'AITrips'), where('userEmail', '==', user?.email));
 
         const querySnapshot = await getDocs(q)
-        setUserTrips([])
-        setLoading(false); // set loading to false after fetching data
+        const trips = [];
         querySnapshot.forEach((doc) => {
-            setUserTrips(prevVal => [...prevVal, doc.data()])
-        })
+            trips.push(doc.data());
+        });
+        setUserTrips(trips); // Set all at once
+        setLoading(false);   // After setting trips
+
     }
 
 
@@ -42,7 +44,7 @@ const AllTrips = () => {
             <div className='grid grid-cols-2 md:grid-cols-3 mt-7'>
 
                 {loading ? (
-                    // ✅ Show loading skeletons
+                    // Show loading skeletons
                     Array.from({ length: 6 }).map((_, index) => (
                         <div
                             key={index}
@@ -50,12 +52,12 @@ const AllTrips = () => {
                         ></div>
                     ))
                 ) : userTrips.length === 0 ? (
-                    // ❌ No trips
+                    // No trips
                     <div className='col-span-2 md:col-span-3 text-center text-gray-600 mt-10'>
                         You haven&apos;t created any trips yet.
                     </div>
                 ) : (
-                    // ✅ Show trips
+                    // Show trips
                     userTrips.map((trip, index) => (
                         <UserTripCardItem key={index} trip={trip} />
                     ))
