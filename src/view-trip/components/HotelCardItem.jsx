@@ -12,7 +12,7 @@ const HotelCardItem = ({ hotel, index, trip }) => {
 
     const GetPlacePhoto = async () => {
         const data = {
-            textQuery: `${hotel?.HotelName}, ${hotel?.HotelAddress}, ${trip?.location || ''}`,
+            textQuery: hotel?.HotelName
         }
         const image = await searchPlaceImages(data.textQuery);
         setImageURL(image)

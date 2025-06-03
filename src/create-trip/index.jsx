@@ -112,7 +112,7 @@ const CreateTrip = () => {
   return (
     <div className='sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-8'>
       <h2 className="font-bold text-3xl">Tell us your travel preferences 🏕️🌴</h2>
-      <p className='mt-3 text-grey-500 text-xl'>Just provide some basic information, and our trip planner will generate a customized itinerary based on your preferences.</p>
+      <p className='mt-8 text-grey-500 text-xl'>Just provide some basic information, and our trip planner will generate a customized itinerary based on your preferences.</p>
 
       <div className='mt-10'>
         <div>
@@ -127,22 +127,22 @@ const CreateTrip = () => {
           /> */}
 
           <Input
+          className='mt-3'
             onChange={(e) => handleInputChange('location', e.target.value)}
             placeholder="Enter a place"
             type="text"
           />
-
         </div>
       </div>
 
-      <div>
-        <h2 className='text-xl mt-5 my-3 font-medium'>How many days are you planning?</h2>
-        <Input onChange={(e) => handleInputChange('day', e.target.value)} placeholder="Ex.3" type="number" />
+      <div className='mt-10'>
+        <h2 className='text-xl my-3 font-medium'>How many days are you planning?</h2>
+        <Input className='mt-3' onChange={(e) => handleInputChange('day', e.target.value)} placeholder="Ex.3" type="number" />
       </div>
 
       <div className='mt-10'>
         <h2 className='text-xl mt-5 my-3 font-medium'>What is your Budget?</h2>
-        <div className='grid grid-cols-3 gap-5 mt-'>
+        <div className='grid grid-cols-3 gap-5 mt-5'>
           {SelectBudgetOptions.map((item, index) => (
             <div key={index}
               onClick={() => handleInputChange('budget', item.title)}
@@ -157,7 +157,7 @@ const CreateTrip = () => {
 
       <div className='mt-10'>
         <h2 className='text-xl mt-5 my-3 font-medium'>Who do you plan on traveling with on your next adventure?</h2>
-        <div className='grid grid-cols-3 gap-5 mt-'>
+        <div className='grid grid-cols-3 gap-5 mt-5'>
           {SelectTravelesList.map((item, index) => (
             <div key={index}
               onClick={() => handleInputChange('traveler', item.people)}
@@ -169,7 +169,6 @@ const CreateTrip = () => {
           ))}
         </div>
       </div>
-
 
       <div className='my-10 justify-end flex'>
         <Button
