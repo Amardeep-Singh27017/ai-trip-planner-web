@@ -74,7 +74,7 @@ const CreateTrip = () => {
       const result = await chatSession.sendMessage(FINAL_PROMPT);
       setLoading(false);
       SaveAiTrip(result?.response?.text())
-
+      toast("Trip Generated Successfully! 🎉")
     } catch (err) {
       console.error("Gemini API Error:", err);
       toast("Error talking to Gemini API.");
