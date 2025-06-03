@@ -82,19 +82,38 @@ const CreateTrip = () => {
   }
 
   const SaveAiTrip = async (TripData) => {
-    setLoading(true)
-    // Add a new document in collection "cities"
+  try {
+    setLoading(true);
     const user = JSON.parse(localStorage.getItem('user'));
     const docId = Date.now().toString();
+
+    // Clean TripData string before parsing
+    let cleanData = TripData.trim();
+
+    // If it's wrapped in backticks or has markdown-like ```json
+    if (cleanData.startsWith("```")) {
+      cleanData = cleanData.replace(/```json|```/g, '').trim();
+    }
+
+    // Try to parse
+    const parsedTripData = JSON.parse(cleanData);
+
     await setDoc(doc(db, "AITrips", docId), {
       userSelection: formdata,
-      tripData: JSON.parse(TripData),
+      tripData: parsedTripData,
       userEmail: user?.email,
       id: docId
     });
-    setLoading(false)
-    navigate('/view-trip/'+docId)
-  };
+
+    setLoading(false);
+    navigate('/view-trip/' + docId);
+  } catch (err) {
+    setLoading(false);
+    console.error("Failed to save AI trip:", err);
+    toast("Something went wrong while saving the trip. Try again!");
+  }
+};
+
 
   const GetUserProfile = async (tokenInfo) => {
     axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`, {
