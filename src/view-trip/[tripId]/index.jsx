@@ -10,7 +10,7 @@ import Footer from '../components/Footer';
 
 const ViewTrip = () => {
   const { tripId } = useParams();
-  const navigate = useNavigate(); // navigation hook
+  const navigate = useNavigate(); // navigation 
   const [trip, setTrip] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +18,7 @@ const ViewTrip = () => {
     if (tripId) {
       GetTripData();
     } else {
-      navigate('/create-trip'); // ⬅️ no tripId, redirect immediately
+      navigate('/create-trip'); // no tripId, redirect immediately
     }
   }, [tripId]);
 
