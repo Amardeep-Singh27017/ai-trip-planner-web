@@ -41,7 +41,7 @@ const HotelCardItem = ({ hotel, index, trip }) => {
     return (
         <Link to={'https://www.google.com/maps/search/?api=1&query=' + hotel?.HotelName + "," + hotel?.HotelAddress} target='_black'>
             <div key={index} className='hover:scale-105 transition-all cursor-pointer'>
-                <img className='rounded-lg' src={imageURL} alt='loading images' />
+                <img className='rounded-lg' src={imageURL || '/default-hotel.jpg'} alt='loading images' />
                 <div className='my-2 flex flex-col gap-1'>
                     <h2 className='font-medium'>{hotel?.HotelName}</h2>
                     <h2 className='text-xs text-gray-500'>📍 {hotel?.HotelAddress}</h2>
