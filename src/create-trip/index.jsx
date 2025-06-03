@@ -82,46 +82,19 @@ const CreateTrip = () => {
   }
 
   const SaveAiTrip = async (TripData) => {
-  setLoading(true);
-  try {
+    setLoading(true)
+    // Add a new document in collection "cities"
     const user = JSON.parse(localStorage.getItem('user'));
     const docId = Date.now().toString();
-
-    let cleanData = TripData.trim();
-
-    // Remove Markdown-style code fences if they exist
-    if (cleanData.startsWith("```")) {
-      cleanData = cleanData.replace(/```json|```/g, '').trim();
-    }
-
-    // Try to extract the JSON block using regex
-    const jsonMatch = cleanData.match(/{[\s\S]*}/);
-    if (!jsonMatch) {
-      throw new Error("No valid JSON found in AI response.");
-    }
-
-    const fixedJsonString = jsonMatch[0]
-      .replace(/(\w+):/g, '"$1":')      // Add quotes around keys
-      .replace(/'/g, '"');              // Replace single quotes with double quotes
-
-    const parsedTripData = JSON.parse(fixedJsonString);
-
     await setDoc(doc(db, "AITrips", docId), {
       userSelection: formdata,
-      tripData: parsedTripData,
+      tripData: JSON.parse(TripData),
       userEmail: user?.email,
       id: docId
     });
-
-    setLoading(false);
-    navigate('/view-trip/' + docId);
-  } catch (err) {
-    console.error("Failed to save AI trip:", err);
-    toast("Something went wrong while saving the trip. The AI might have returned bad JSON.");
-    setLoading(false);
-  }
-};
-
+    setLoading(false)
+    navigate('/view-trip/'+docId)
+  };
 
   const GetUserProfile = async (tokenInfo) => {
     axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`, {
@@ -196,6 +169,7 @@ const CreateTrip = () => {
           ))}
         </div>
       </div>
+
 
       <div className='my-10 justify-end flex'>
         <Button
