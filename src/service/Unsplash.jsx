@@ -6,7 +6,7 @@ const searchPlaceImages = async (query) => {
   const res = await axios.get('https://api.unsplash.com/search/photos', {
     params: {
       query: query,
-      per_page: 3,  // Number of images
+      per_page: 5,  // Number of images
     },
     headers: {
       Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}`,
