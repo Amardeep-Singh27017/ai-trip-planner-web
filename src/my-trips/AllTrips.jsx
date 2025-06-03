@@ -61,7 +61,7 @@ const AllTrips = () => {
             <br />
             <button
               onClick={() => navigate('/create-trip')}
-              className='mt-4 text-blue-600 underline hover:text-blue-800'
+              className='mt-4 text-blue-600 underline hover:text-blue-800 cursor-pointer'
             >
               Plan your first trip now →
             </button>
