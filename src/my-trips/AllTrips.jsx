@@ -26,6 +26,7 @@ const AllTrips = () => {
 
         const querySnapshot = await getDocs(q)
         setUserTrips([])
+        setLoading(false); // set loading to false after fetching data
         querySnapshot.forEach((doc) => {
             setUserTrips(prevVal => [...prevVal, doc.data()])
         })
