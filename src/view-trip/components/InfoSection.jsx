@@ -44,7 +44,7 @@ const InfoSection = ({ trip }) => {
 
   return (
     <div>
-      <img className='h-[340px] w-[1000px] object-cover rounded-xl border' src={imageURL} alt='main image...' />
+      <img className='h-[340px] w-[1000px] object-cover rounded-xl border' src={imageURL || "/default-place.webp"} alt='main image...' />
 
       <div className='flex justify-between items-center'>
         <div className='my-5 flex flex-col gap-2'>
