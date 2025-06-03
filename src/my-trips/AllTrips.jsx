@@ -31,7 +31,6 @@ const AllTrips = () => {
         });
         setUserTrips(trips); // Set all at once
         setLoading(false);   // After setting trips
-
     }
 
 
@@ -51,7 +50,7 @@ const AllTrips = () => {
                             className='h-[195px] w-[300px] bg-slate-200 mt-5 animate-pulse rounded-xl'
                         ></div>
                     ))
-                ) : userTrips.length === 0 ? (
+                ) : userTrips && userTrips.length === 0 ? (
                     // No trips
                     <div className='col-span-2 md:col-span-3 text-center text-gray-600 mt-10'>
                         You haven&apos;t created any trips yet.
@@ -62,6 +61,7 @@ const AllTrips = () => {
                         <UserTripCardItem key={index} trip={trip} />
                     ))
                 )}
+
 
             </div>
         </div>
