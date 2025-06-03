@@ -54,40 +54,47 @@ export const SelectBudgetOptions= [
     },
 ]
 
+// export const AI_PROMPT='Generate Travel Plan for Location : {location} for {totalDays} Days for {traveler} traveler with a {budget} budget(Itinerary section in the output must be an array of days plans and all the individual day details in the Plan array inside Itinerary) , give me HotelOptions list with the HotelName(at least 4 hotels must recommended or you can recommended at least 4 or less than 9), Hotel address, Price(in range),  hotel image url(actual images url), geo coordinates,rating, descriptions and suggest itinerary with placeName, Place Details, Place Image Url, Geo Coordinates, ticket Pricing, rating,Time travel each of the location for 3 days with each day plan with best time to visit in JSON format.'  
 export const AI_PROMPT = `
-Generate a travel plan for the following details:
+You are a travel planner AI.
 
-- Location: {location}
-- Duration: {totalDays} days
-- Number of travelers: {traveler}
-- Budget: {budget}
+Generate a detailed travel plan in **JSON format** for the following inputs:
 
-Output format: JSON
+- **Location**: {location}
+- **Number of Days**: {totalDays}
+- **Traveler Type**: {traveler}
+- **Budget**: {budget}
 
 Your response must include:
 
-1. "HotelOptions" (Array)
-   - Each hotel should include:
-     - HotelName
-     - Hotel address
-     - Price (range)
-     - Actual hotel image URL
-     - Geo coordinates
-     - Rating
-     - Description
-   - Recommend between 4 and 8 hotels.
+1. **Itinerary** (array of day-wise plans)
+   - Each day must have a list of places to visit (called "Plan").
+   - Each item in "Plan" should include:
+     - placeName
+     - placeDetails
+     - placeImageUrl (actual image URLs)
+     - geoCoordinates (latitude and longitude)
+     - ticketPricing
+     - rating
+     - bestTimeToVisit
+     - timeToSpend
 
-2. "Itinerary" (Array of days)
-   - Each day must contain a "Plan" array.
-   - For each place in the Plan:
-     - PlaceName
-     - Place details
-     - Place image URL
-     - Geo coordinates
-     - Ticket pricing
-     - Rating
-     - Time to travel to the location
-     - Best time to visit
+2. **HotelOptions** (array of 4 to 9 hotels)
+   - Each hotel object must include:
+     - hotelName
+     - address
+     - priceRange
+     - imageUrl (real hotel image URL)
+     - geoCoordinates (latitude and longitude)
+     - rating
+     - description
 
-Ensure all keys are in camelCase and output only valid JSON.
+Output must be a **valid JSON object** with two keys: "itinerary" and "hotelOptions".
+
+Example structure:
+{
+  "itinerary": [ ... ],
+  "hotelOptions": [ ... ]
+}
+Only return the JSON, nothing else.
 `;
