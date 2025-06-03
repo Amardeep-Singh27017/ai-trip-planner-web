@@ -14,6 +14,8 @@ const Hero = () => {
       <Link to={'/create-trip'}>
         <Button className="cursor-pointer">Get Started, It's Free</Button>
       </Link>
+      
+      <img className='my-8 rounded-lg bg-transparent' src="/landing-image1.png" alt="Loading image..." />
     </div>
   )
 }
