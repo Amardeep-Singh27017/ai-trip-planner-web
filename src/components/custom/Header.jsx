@@ -59,13 +59,13 @@ const Header = () => {
             </a>
             <Popover>
               <PopoverTrigger>
-                <img src={user.picture} className='w-[40px] h-[40px] rounded-full cursor-pointer' alt='user profile...'/>
+                <img src={user.picture} className='w-[40px] h-[40px] rounded-full cursor-pointer' alt='user profile...' />
               </PopoverTrigger>
               <PopoverContent>
                 <h2 className='cursor-pointer' onClick={() => {
                   googleLogout();
                   localStorage.clear();
-                  window.location.reload();
+                  window.location.href = "/"; // Redirect to home page after logout
                 }}>Logout</h2>
               </PopoverContent>
             </Popover>
