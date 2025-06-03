@@ -82,21 +82,29 @@ const CreateTrip = () => {
   }
 
   const SaveAiTrip = async (TripData) => {
+  setLoading(true);
   try {
-    setLoading(true);
     const user = JSON.parse(localStorage.getItem('user'));
     const docId = Date.now().toString();
 
-    // Clean TripData string before parsing
     let cleanData = TripData.trim();
 
-    // If it's wrapped in backticks or has markdown-like ```json
+    // Remove Markdown-style code fences if they exist
     if (cleanData.startsWith("```")) {
       cleanData = cleanData.replace(/```json|```/g, '').trim();
     }
 
-    // Try to parse
-    const parsedTripData = JSON.parse(cleanData);
+    // Try to extract the JSON block using regex
+    const jsonMatch = cleanData.match(/{[\s\S]*}/);
+    if (!jsonMatch) {
+      throw new Error("No valid JSON found in AI response.");
+    }
+
+    const fixedJsonString = jsonMatch[0]
+      .replace(/(\w+):/g, '"$1":')      // Add quotes around keys
+      .replace(/'/g, '"');              // Replace single quotes with double quotes
+
+    const parsedTripData = JSON.parse(fixedJsonString);
 
     await setDoc(doc(db, "AITrips", docId), {
       userSelection: formdata,
@@ -108,9 +116,9 @@ const CreateTrip = () => {
     setLoading(false);
     navigate('/view-trip/' + docId);
   } catch (err) {
-    setLoading(false);
     console.error("Failed to save AI trip:", err);
-    toast("Something went wrong while saving the trip. Try again!");
+    toast("Something went wrong while saving the trip. The AI might have returned bad JSON.");
+    setLoading(false);
   }
 };
 
