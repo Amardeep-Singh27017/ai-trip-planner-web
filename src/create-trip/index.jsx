@@ -34,7 +34,7 @@ const CreateTrip = () => {
   const [openDailog, setOpenDailog] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const handleInputChange = (name, value) => {
     setFormdata({
@@ -59,7 +59,7 @@ const CreateTrip = () => {
       return;
     }
 
-     // Validate fields are not undefined, null or empty string
+    // Validate fields are not undefined, null or empty string
     if (
       !formdata?.location || formdata.location.trim() === "" ||
       !formdata?.day || formdata.day.toString().trim() === "" ||
@@ -67,6 +67,11 @@ const CreateTrip = () => {
     ) {
       toast("Please fill all details!")
       return
+    }
+
+    if (parseInt(formdata.day) < 1) {
+      toast("Trip must be at least 1 day!")
+      return;
     }
 
     setLoading(true);
@@ -98,7 +103,7 @@ const CreateTrip = () => {
       id: docId
     });
     setLoading(false)
-    navigate('/view-trip/'+docId)
+    navigate('/view-trip/' + docId)
   };
 
   const GetUserProfile = async (tokenInfo) => {
@@ -132,7 +137,7 @@ const CreateTrip = () => {
           /> */}
 
           <Input
-          className='mt-3'
+            className='mt-3'
             onChange={(e) => handleInputChange('location', e.target.value)}
             placeholder="Enter a place"
             type="text"
