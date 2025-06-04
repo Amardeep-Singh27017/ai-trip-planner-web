@@ -59,9 +59,14 @@ const CreateTrip = () => {
       return;
     }
 
-    if (!formdata?.location || !formdata?.day || !formdata?.budget || !formdata?.traveler) {
+     // Validate fields are not undefined, null or empty string
+    if (
+      !formdata?.location || formdata.location.trim() === "" ||
+      !formdata?.day || formdata.day.toString().trim() === "" ||
+      !formdata?.budget || !formdata?.traveler
+    ) {
       toast("Please fill all details!")
-      return;
+      return
     }
 
     setLoading(true);
