@@ -76,7 +76,7 @@ const CreateTrip = () => {
       SaveAiTrip(result?.response?.text())
       toast("Trip Generated Successfully! 🎉")
     } catch (err) {
-      console.error("Gemini API Error:", err);
+      console.error("Gemini API Error Please check:", err);
       toast("Error talking to Gemini API.");
     }
   }
