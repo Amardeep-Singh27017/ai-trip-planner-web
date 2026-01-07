@@ -12,9 +12,10 @@ const Hero = () => {
 
       <p className='text-xl text-[19px] text-gray-500 text-center'>Your personal trip planner and travel curator,creating custom Itineraries tailored to your interests and budget</p>
       <Link to={'/create-trip'}>
+        <h2>Hello</h2>
         <Button className="cursor-pointer">Get Started, It's Free</Button>
       </Link>
-      
+
       <img className='my-8 rounded-lg bg-transparent' src="/landing-image1.png" alt="Loading image..." />
     </div>
   )
